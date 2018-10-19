@@ -1,21 +1,19 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using StandardWebsite.Models;
+﻿using System.Web.Mvc;
 
 namespace StandardWebsite.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
+        //
+        // GET: /Account/Signin
+        [AllowAnonymous]
+        public ActionResult Signin()
+        {
+            return View();
+        }
+
+        /*private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public AccountController()
@@ -480,6 +478,6 @@ namespace StandardWebsite.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
+        #endregion*/
     }
 }
