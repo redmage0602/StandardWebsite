@@ -1,4 +1,6 @@
-﻿@{
+﻿@model StandardWebsite.Models.SigninViewModel
+
+@{
     Layout = "~/Views/Shared/_SigninLayout.cshtml";
     ViewBag.Title = "Sign in";
 }
@@ -8,17 +10,22 @@
         <img alt="logo" src="~/Images/logo_signin.jpg" style="width:230px;" />
     </div>
 
-    <form>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
         <div class="login-field">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Username">
+            @Html.LabelFor(model => model.Username)
+            @Html.TextBoxFor(model => model.Username, new { placeholder = "Username" })
             <i class="icon-user"></i>
+            @Html.ValidationMessageFor(model => model.Username)
         </div>
 
         <div class="login-field">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password">
+            @Html.LabelFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
             <i class="icon-lock"></i>
+            @Html.ValidationMessageFor(model => model.Password)
         </div>
 
         <div class="login-button clearfix">
@@ -26,9 +33,12 @@
                 <a href="@Url.Action("signup", "account")" role="button" data-toggle="modal">Signup</a> |
                 <a href="@Url.Action("resetpassword", "account")" role="button" data-toggle="modal">Forgot password?</a>
             </label>
-            <button type="submit" class="pull-right btn btn-large blue">SIGN IN <i class="icon-arrow-right"></i></button>
+
+            <button type="submit" class="pull-right btn btn-large blue">
+                SIGN IN <i class="icon-arrow-right"></i>
+            </button>
         </div>
-    </form>
+    }
 </div>
 
 <div id="forgot-pw" class="modal hide fade" tabindex="-1" data-width="760">
@@ -47,6 +57,7 @@
                             <div class="span8">
                                 <input type="text" class="span12" name="email" placeholder="example@domain.com">
                             </div>
+
                             <div class="span4">
                                 <a href="#" class="btn btn-block blue">Reset password</a>
                             </div>

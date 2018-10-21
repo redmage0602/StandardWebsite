@@ -3,6 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StandardWebsite.Models
 {
+    public class SigninViewModel
+    {
+        [MaxLength(32)]
+        [Required]
+        public string Username { get; set; }
+
+        [MaxLength(128)]
+        [Required]
+        public string Password { get; set; }
+    }
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

@@ -31,6 +31,7 @@ namespace StandardWebsite
                 , "~/Content/FlatPoint/css/bootstrap.css"
                 , "~/Content/FlatPoint/css/stylesheet.css"
                 , "~/Content/FlatPoint/icon/font-awesome.css"
+                , "~/Content/Custom.css"
             ));
 
             bundles.Add(new ScriptBundle("~/Content/FlatPointJS").Include(

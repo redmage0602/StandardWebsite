@@ -1,16 +1,50 @@
-﻿using System.Web.Mvc;
+﻿using StandardWebsite.BLL;
+using StandardWebsite.Models;
+using System.Web.Mvc;
 
 namespace StandardWebsite.Controllers
 {
     //[Authorize]
     public class AccountController : Controller
     {
+        private AccountBLL _accountBLL = new AccountBLL();
+
         //
         // GET: /Account/Signin
         [AllowAnonymous]
         public ActionResult Signin()
         {
             return View();
+        }
+
+        //
+        // POST: /Account/Signin
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Signin(SigninViewModel signin)
+        {
+            if (ModelState.IsValid)
+            {
+                SigninStatus result = _accountBLL.Signin(signin.Username, signin.Password);
+
+                switch (result)
+                {
+                    case SigninStatus.Success:
+                        return RedirectToAction("index", "home");
+
+                    case SigninStatus.Incorrect:
+                        ModelState.AddModelError("Password", "Username or password incorrect.");
+                        break;
+
+                    case SigninStatus.Failure:
+                    default:
+                        ModelState.AddModelError("Password", "Sign in failed. Please try again later.");
+                        break;
+                }
+            }
+
+            return View(signin);
         }
 
         /*private ApplicationSignInManager _signInManager;
