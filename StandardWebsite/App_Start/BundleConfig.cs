@@ -73,6 +73,10 @@ namespace StandardWebsite
                 , "~/Content/FlatPoint/js/library/bootstrap-datepicker.js"
                 , "~/Content/FlatPoint/js/library/bootstrap-fileupload.js"
                 , "~/Content/FlatPoint/js/library/jquery.inputmask.bundle.js"
+
+                , "~/Content/FlatPoint/js/library/jquery.dataTables.js"
+                , "~/Content/FlatPoint/js/flatpoint_core.js"
+                , "~/Content/FlatPoint/js/datatables.js"
             ));
         }
     }

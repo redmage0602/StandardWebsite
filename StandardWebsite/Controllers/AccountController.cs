@@ -1,10 +1,12 @@
 ﻿using StandardWebsite.BLL;
+using StandardWebsite.Common;
 using StandardWebsite.Models;
 using System.Web.Mvc;
 
 namespace StandardWebsite.Controllers
 {
     //[Authorize]
+    [AccountAuthorization]
     public class AccountController : Controller
     {
         private AccountBLL _accountBLL = new AccountBLL();
@@ -12,17 +14,23 @@ namespace StandardWebsite.Controllers
         //
         // GET: /Account/Signin
         [AllowAnonymous]
-        public ActionResult Signin()
+        public ActionResult Signin(string redirectUrl)
         {
+            if (_accountBLL.IsSignedin())
+            {
+                return RedirectToLocal(redirectUrl);
+            }
+
+            ViewBag.RedirectUrl = redirectUrl;
             return View();
         }
 
         //
         // POST: /Account/Signin
-        [HttpPost]
         [AllowAnonymous]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Signin(SigninViewModel signin)
+        public ActionResult Signin(SigninViewModel signin, string redirectUrl)
         {
             if (ModelState.IsValid)
             {
@@ -31,7 +39,7 @@ namespace StandardWebsite.Controllers
                 switch (result)
                 {
                     case SigninStatus.Success:
-                        return RedirectToAction("index", "home");
+                        return RedirectToLocal(redirectUrl);
 
                     case SigninStatus.Incorrect:
                         ModelState.AddModelError("Password", "Username or password incorrect.");
@@ -45,6 +53,24 @@ namespace StandardWebsite.Controllers
             }
 
             return View(signin);
+        }
+
+        //
+        // GET: /Account/Signout
+        public ActionResult Signout()
+        {
+            _accountBLL.Signout();
+            return RedirectToAction("signin", "account");
+        }
+
+        private ActionResult RedirectToLocal(string redirectUrl)
+        {
+            if (Url.IsLocalUrl(redirectUrl))
+            {
+                return Redirect(redirectUrl);
+            }
+
+            return RedirectToAction("index", "grammar");
         }
 
         /*private ApplicationSignInManager _signInManager;

@@ -160,8 +160,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\BaseBLL.cs" />
+    <Compile Include="Common\Attribute.cs" />
     <Compile Include="Common\Util.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
+    <Compile Include="Controllers\GrammarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\AccountDAL.cs" />
@@ -243,9 +246,13 @@
     <Content Include="Content\FlatPoint\img\jquery.minicolors.png" />
     <Content Include="Content\FlatPoint\img\loading.gif" />
     <Content Include="Content\FlatPoint\img\logo.png" />
+    <Content Include="Content\FlatPoint\img\logo_layout.jpg" />
     <Content Include="Content\FlatPoint\img\minus.png" />
     <Content Include="Content\FlatPoint\img\plus.png" />
     <Content Include="Content\FlatPoint\img\progress-pattern.png" />
+    <Content Include="Content\FlatPoint\img\sorting.png" />
+    <Content Include="Content\FlatPoint\img\sorting_asc.png" />
+    <Content Include="Content\FlatPoint\img\sorting_desc.png" />
     <Content Include="Content\FlatPoint\img\video_play.png" />
     <Content Include="Content\FlatPoint\js\bootstrap.js" />
     <Content Include="Content\FlatPoint\js\bootstrap.min.js" />
@@ -393,6 +400,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\admin.jpeg" />
+    <Content Include="Images\administrator.png" />
     <Content Include="Images\logo_signin.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -462,6 +471,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_SigninLayout.cshtml" />
     <Content Include="Views\Account\Signin.cshtml" />
+    <Content Include="Views\Grammar\Index.cshtml" />
+    <Content Include="Views\Tag\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

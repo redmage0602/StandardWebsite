@@ -52,6 +52,16 @@ namespace StandardWebsite.BLL
 
             return SigninStatus.Incorrect;
         }
+
+        public void Signout()
+        {
+            Session.Clear();
+        }
+
+        public bool IsSignedin()
+        {
+            return Session["accountId"] != null;
+        }
     }
 
     public enum SigninStatus

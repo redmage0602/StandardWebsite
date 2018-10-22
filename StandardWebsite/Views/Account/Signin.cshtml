@@ -10,7 +10,7 @@
         <img alt="logo" src="~/Images/logo_signin.jpg" style="width:230px;" />
     </div>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("signin", "account", new { RedirectUrl = ViewBag.RedirectUrl }))
     {
         @Html.AntiForgeryToken()
 
