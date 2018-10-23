@@ -31,6 +31,8 @@ namespace StandardWebsite.Models
     {
         public DbSet<Account> Accounts { get; set; }
 
+        public DbSet<Tag> Tags { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

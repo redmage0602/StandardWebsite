@@ -5,7 +5,7 @@ namespace StandardWebsite.Models
 {
     public class SigninViewModel
     {
-        [MaxLength(32)]
+        [MaxLength(10)]
         [Required]
         public string Username { get; set; }
 
