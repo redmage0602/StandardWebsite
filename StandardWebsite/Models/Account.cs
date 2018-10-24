@@ -33,6 +33,8 @@ namespace StandardWebsite.Models
 
         public DbSet<Tag> Tags { get; set; }
 
+        public DbSet<Grammar> Grammars { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

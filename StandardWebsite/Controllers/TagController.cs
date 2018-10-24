@@ -1,8 +1,6 @@
 ﻿using StandardWebsite.BLL;
 using StandardWebsite.Common;
 using StandardWebsite.Models;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace StandardWebsite.Controllers
@@ -21,42 +19,12 @@ namespace StandardWebsite.Controllers
 
         //
         // GET: /Tag/IndexAjax
-        public ActionResult IndexAjax(JQueryDataTableModel model)
+        public ActionResult IndexAjax(JQueryDataTableRequest request)
         {
-            int total, filtered;
-            List<Tag> tags = _tagBLL.GetAll(model.sSearch, model.iSortCol_0, model.sSortDir_0, model.iDisplayStart
-                , model.iDisplayLength, out total, out filtered);
+            JQueryDataTableResponse response = _tagBLL.GetAll(request.sSearch, request.iSortCol_0, request.sSortDir_0
+                , request.iDisplayStart, request.iDisplayLength, request.sEcho);
 
-            if (tags != null)
-            {
-                int i = model.iDisplayStart + 1;
-                var data = from t in tags
-                           let index = i++
-                           select new[]
-                           {
-                               index.ToString(),
-                               t.Content,
-                               t.Id.ToString(),
-                               t.Id.ToString(),
-                               t.Id.ToString()
-                           };
-
-                return Json(new
-                {
-                    sEcho = model.sEcho,
-                    iTotalRecords = total,
-                    iTotalDisplayRecords = filtered,
-                    aaData = data
-                }, JsonRequestBehavior.AllowGet);
-            }
-
-            return Json(new
-            {
-                sEcho = model.sEcho,
-                iTotalRecords = total,
-                iTotalDisplayRecords = filtered,
-                aaData = new string[] { }
-            }, JsonRequestBehavior.AllowGet);
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
     }
 }

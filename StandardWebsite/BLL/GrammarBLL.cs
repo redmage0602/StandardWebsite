@@ -5,28 +5,28 @@ using System.Linq;
 
 namespace StandardWebsite.BLL
 {
-    public class TagBLL : BaseBLL
+    public class GrammarBLL : BaseBLL
     {
-        private TagDAL _tagDAL = new TagDAL();
+        private GrammarDAL _grammarDAL = new GrammarDAL();
 
         public JQueryDataTableResponse GetAll(string search, int? sortColumn, string sortOrder, int skip, int take, string sEcho)
         {
             int total, filtered;
-            List<Tag> tags = _tagDAL.GetAll(search, sortColumn, sortOrder, skip, take, DeleteFlag.Active, out total, out filtered);
+            List<Grammar> grammars = _grammarDAL.GetAll(search, sortColumn, sortOrder, skip, take, DeleteFlag.Active, out total, out filtered);
             IEnumerable<string[]> data = new List<string[]>();
 
-            if (tags != null)
+            if (grammars != null)
             {
                 int i = skip + 1;
-                data = from t in tags
+                data = from g in grammars
                        let index = i++
                        select new[]
                        {
                            index.ToString(),
-                           t.Content,
-                           t.Id.ToString(),
-                           t.Id.ToString(),
-                           t.Id.ToString()
+                           g.Content,
+                           g.Id.ToString(),
+                           g.Id.ToString(),
+                           g.Id.ToString()
                        };
             }
 

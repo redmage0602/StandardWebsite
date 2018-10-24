@@ -5,36 +5,36 @@ using System.Linq;
 
 namespace StandardWebsite.DAL
 {
-    public class TagDAL : BaseDAL
+    public class GrammarDAL : BaseDAL
     {
-        public List<Tag> GetAll(string search, int? sortColumn, string sortOrder, int skip, int take
+        public List<Grammar> GetAll(string search, int? sortColumn, string sortOrder, int skip, int take
             , DeleteFlag deleteFlag, out int total, out int filtered)
         {
             total = filtered = 0;
 
             try
             {
-                IQueryable<Tag> tags = DBContext.Tags.Where(t => t.DeleteFlag == deleteFlag);
-                total = tags.Count();
+                IQueryable<Grammar> grammars = DBContext.Grammars.Where(g => g.DeleteFlag == deleteFlag);
+                total = grammars.Count();
 
                 if (!string.IsNullOrEmpty(search))
                 {
-                    tags = tags.Where(t => t.Content.Contains(search));
+                    grammars = grammars.Where(g => g.Content.Contains(search));
                 }
 
-                filtered = tags.Count();
+                filtered = grammars.Count();
 
                 switch (sortColumn)
                 {
                     case 1:
-                        tags = sortOrder == "asc" ? tags.OrderBy(t => t.Content) : tags.OrderByDescending(t => t.Content);
+                        grammars = sortOrder == "asc" ? grammars.OrderBy(g => g.Content) : grammars.OrderByDescending(g => g.Content);
                         break;
 
                     default:
                         break;
                 }
 
-                return tags.Skip(skip).Take(take).ToList();
+                return grammars.Skip(skip).Take(take).ToList();
             }
             catch (Exception exception)
             {

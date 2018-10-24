@@ -1,6 +1,8 @@
-﻿namespace StandardWebsite.Models
+﻿using System.Collections;
+
+namespace StandardWebsite.Models
 {
-    public class JQueryDataTableModel
+    public class JQueryDataTableRequest
     {
         /// <summary>
         /// Request sequence number sent by DataTable,
@@ -47,5 +49,28 @@
         /// String to denote which way to order column
         /// </summary>
         public string sSortDir_0 { get; set; }
+    }
+
+    public class JQueryDataTableResponse
+    {
+        /// <summary>
+        /// An unaltered copy of sEcho sent from the client side
+        /// </summary>  
+        public string sEcho { get; set; }
+
+        /// <summary>
+        /// Total records, before filtering
+        /// </summary>  
+        public int iTotalRecords { get; set; }
+
+        /// <summary>
+        /// Total records, after filtering
+        /// </summary>  
+        public int iTotalDisplayRecords { get; set; }
+
+        /// <summary>
+        /// The data in a 2D array
+        /// </summary>  
+        public IEnumerable aaData { get; set; }
     }
 }
