@@ -30,11 +30,11 @@ namespace StandardWebsite.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Signin(SigninViewModel signin, string redirectUrl)
+        public ActionResult Signin(SigninViewModel viewModel, string redirectUrl)
         {
             if (ModelState.IsValid)
             {
-                SigninStatus result = _accountBLL.Signin(signin.Username, signin.Password);
+                SigninStatus result = _accountBLL.Signin(viewModel.Username, viewModel.Password);
 
                 switch (result)
                 {
@@ -52,7 +52,7 @@ namespace StandardWebsite.Controllers
                 }
             }
 
-            return View(signin);
+            return View(viewModel);
         }
 
         //

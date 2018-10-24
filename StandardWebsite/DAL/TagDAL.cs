@@ -7,6 +7,19 @@ namespace StandardWebsite.DAL
 {
     public class TagDAL : BaseDAL
     {
+        public List<Tag> GetAll(DeleteFlag deleteFlag)
+        {
+            try
+            {
+                List<Tag> tags = DBContext.Tags.Where(t => t.DeleteFlag == deleteFlag).ToList();
+                return tags;
+            }
+            catch (Exception exception)
+            {
+                return null;
+            }
+        }
+
         public List<Tag> GetAll(string search, int? sortColumn, string sortOrder, int skip, int take
             , DeleteFlag deleteFlag, out int total, out int filtered)
         {
@@ -28,6 +41,10 @@ namespace StandardWebsite.DAL
                 {
                     case 1:
                         tags = sortOrder == "asc" ? tags.OrderBy(t => t.Content) : tags.OrderByDescending(t => t.Content);
+                        break;
+
+                    case 2:
+                        tags = sortOrder == "asc" ? tags.OrderBy(t => t.GrammarTags.Count) : tags.OrderByDescending(t => t.GrammarTags.Count);
                         break;
 
                     default:

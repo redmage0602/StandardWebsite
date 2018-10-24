@@ -185,6 +185,7 @@
   -webkit-box-sizing: border-box;
   -khtml-box-sizing : border-box;
   box-sizing        : border-box;
+  min-height: 30px;
 }
 .chzn-container-multi .chzn-choices li {
   float: left;
@@ -194,6 +195,7 @@
   white-space: nowrap;
   margin: 0;
   padding: 0;
+  min-height: 28px;
 }
 .chzn-container-multi .chzn-choices .search-field input {
   color: #666;
@@ -211,29 +213,18 @@
 }
 .chzn-container-multi .chzn-choices .search-field .default {
   color: #999;
+  min-height: 26px;
 }
 .chzn-container-multi .chzn-choices .search-choice {
-  -webkit-border-radius: 3px;
-  -moz-border-radius   : 3px;
-  border-radius        : 3px;
   -moz-background-clip   : padding;
   -webkit-background-clip: padding-box;
   background-clip        : padding-box;
-  background-color: #e4e4e4;
+  background-color: #585858;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#eeeeee', GradientType=0 ); 
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -moz-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -o-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%); 
-  -webkit-box-shadow: 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
-  -moz-box-shadow   : 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
-  box-shadow        : 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
-  color: #333;
-  border: 1px solid #aaaaaa;
+  color: #fff;
   line-height: 13px;
-  padding: 3px 20px 3px 5px;
-  margin: 3px 0 3px 5px;
+  padding: 2px 18px 4px 6px;
+  margin: 4px 0 4px 4px;
   position: relative;
   cursor: default;
 }

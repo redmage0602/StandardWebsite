@@ -18,14 +18,14 @@
             @Html.LabelFor(model => model.Username)
             @Html.TextBoxFor(model => model.Username, new { placeholder = "Username", autofocus = true })
             <i class="icon-user"></i>
-            @Html.ValidationMessageFor(model => model.Username)
+            <span class="required">@Html.ValidationMessageFor(model => model.Username)</span>
         </div>
 
         <div class="login-field">
             @Html.LabelFor(model => model.Password)
             @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
             <i class="icon-lock"></i>
-            @Html.ValidationMessageFor(model => model.Password)
+            <span class="required">@Html.ValidationMessageFor(model => model.Password)</span>
         </div>
 
         <div class="login-button clearfix">

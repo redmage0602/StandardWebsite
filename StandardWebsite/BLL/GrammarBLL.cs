@@ -1,5 +1,6 @@
 ﻿using StandardWebsite.DAL;
 using StandardWebsite.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,6 +25,7 @@ namespace StandardWebsite.BLL
                        {
                            index.ToString(),
                            g.Content,
+                           string.Join(", ", g.GrammarTags.Select(gm => gm.Tag.Content).ToArray()),
                            g.Id.ToString(),
                            g.Id.ToString(),
                            g.Id.ToString()
@@ -39,6 +41,41 @@ namespace StandardWebsite.BLL
             };
 
             return response;
+        }
+
+        public Grammar Create(string content, int[] tagIds)
+        {
+            if (!string.IsNullOrEmpty(content) && tagIds.Count() > 0)
+            {
+                int accountId;
+                int.TryParse(Session["accountId"].ToString(), out accountId);
+
+                Grammar grammar = new Grammar()
+                {
+                    Content = content,
+                    DeleteFlag = DeleteFlag.Active,
+                    CreatedDate = DateTime.Now,
+                    CreatedUser = accountId,
+                    GrammarTags = new List<GrammarTag>()
+                };
+
+                foreach (int id in tagIds)
+                {
+                    GrammarTag grammarTag = new GrammarTag()
+                    {
+                        GrammarId = grammar.Id,
+                        TagId = id,
+                        CreatedDate = DateTime.Now,
+                        CreatedUser = accountId
+                    };
+
+                    grammar.GrammarTags.Add(grammarTag);
+                }
+
+                return _grammarDAL.Create(grammar);
+            }
+
+            return null;
         }
     }
 }

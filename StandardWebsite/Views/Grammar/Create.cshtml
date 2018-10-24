@@ -1,0 +1,78 @@
+﻿@using StandardWebsite.Models
+
+@model GrammarViewModel
+
+@{
+    ViewBag.Title = "Create Grammar";
+}
+
+<div id="content">
+    <div class="inner_content">
+        <div class="statistic clearfix">
+            <div class="current_page float_left">
+                <span style="font-size:30px;">@ViewBag.Title</span>
+            </div>
+        </div>
+
+        <div class="widgets_area">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="well blue">
+                        <div class="well-header">
+                            <h5>Information</h5>
+                        </div>
+
+                        <div class="well-content no-search">
+                            @if (ViewBag.ErrorMessage != null)
+                            {
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
+                                    @ViewBag.ErrorMessage
+                                </div>
+                            }
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form_row">
+                                    <label class="field_name align_right">
+                                        @Html.DisplayNameFor(model => model.Content) <span class="required">*</span>
+                                    </label>
+
+                                    <div class="field">
+                                        @Html.TextBoxFor(model => model.Content, new { style = "width:220px;", autofocus = true })
+                                        <span class="help-inline required">@Html.ValidationMessageFor(model => model.Content)</span>
+                                    </div>
+                                </div>
+
+                                <div class="form_row">
+                                    <label class="field_name align_right">
+                                        @Html.DisplayNameFor(model => model.Tags) <span class="required">*</span>
+                                    </label>
+
+                                    <div class="field">
+                                        <select multiple="multiple" class="chosen" data-placeholder="Select tags" id="Tags" name="Tags">
+                                            @foreach (Tag tag in ViewBag.Tags)
+                                            {
+                                                <option value="@tag.Id" @(Model != null && Model.Tags != null && Model.Tags.Contains(tag.Id) ? "selected" : "")>@tag.Content</option>
+                                            }
+                                        </select>
+                                        <span class="help-inline required">@Html.ValidationMessageFor(model => model.Tags)</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form_row">
+                                    <div class="field">
+                                        <input type="submit" value="Create" class="blue btn" />
+                                        <a href="@Url.Action("index", "grammar")" class="btn grey">Cancel</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

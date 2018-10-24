@@ -51,9 +51,11 @@ namespace StandardWebsite.DAL
                 {
                     DBContext.Entry(account).State = EntityState.Modified;
                     DBContext.SaveChanges();
+
+                    return GetById(account.Id, account.DeleteFlag);
                 }
 
-                return GetById(account.Id, account.DeleteFlag);
+                return account;
             }
             catch (Exception exception)
             {

@@ -35,6 +35,7 @@
                                     <tr>
                                         <th style="text-align:center; width:40px;">#</th>
                                         <th style="text-align:center;">@Html.DisplayNameFor(model => model.Content)</th>
+                                        <th style="text-align:center; width:160px;">@Html.DisplayNameFor(model => model.GrammarTags)</th>
                                         <th style="width:80px;">&nbsp;</th>
                                         <th style="width:80px;">&nbsp;</th>
                                         <th style="width:80px;">&nbsp;</th>
@@ -70,7 +71,7 @@
                 },
                 "aoColumnDefs": [{
                     "sClass": "text-center-important",
-                    "aTargets": [0, 2, 3, 4]
+                    "aTargets": [0, 3, 4, 5]
                 }],
                 "aoColumns": [
                     {
@@ -88,24 +89,31 @@
                         }
                     },
                     {
-                        "sName": "",
+                        "sName": "Tags",
                         "bSortable": false,
                         "fnRender": function (oObj) {
-                            return '<a href="/grammar/detail/' + oObj.aData[2] + '" class="blue btn" style="width:50px;">Detail</a>';
+                            return oObj.aData[2];
                         }
                     },
                     {
                         "sName": "",
                         "bSortable": false,
                         "fnRender": function (oObj) {
-                            return '<a href="/grammar/edit/' + oObj.aData[3] + '" class="grey btn" style="width:50px;">Edit</a>';
+                            return '<a href="/grammar/detail/' + oObj.aData[3] + '" class="blue btn" style="width:50px;">Detail</a>';
                         }
                     },
                     {
                         "sName": "",
                         "bSortable": false,
                         "fnRender": function (oObj) {
-                            return '<a href="/grammar/delete/' + oObj.aData[4] + '" class="red btn" style="width:50px;">Delete</a>';
+                            return '<a href="/grammar/edit/' + oObj.aData[4] + '" class="grey btn" style="width:50px;">Edit</a>';
+                        }
+                    },
+                    {
+                        "sName": "",
+                        "bSortable": false,
+                        "fnRender": function (oObj) {
+                            return '<a href="/grammar/delete/' + oObj.aData[5] + '" class="red btn" style="width:50px;">Delete</a>';
                         }
                     }
                 ]

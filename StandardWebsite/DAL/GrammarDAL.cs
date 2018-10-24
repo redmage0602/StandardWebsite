@@ -7,6 +7,19 @@ namespace StandardWebsite.DAL
 {
     public class GrammarDAL : BaseDAL
     {
+        public Grammar GetById(int id, DeleteFlag deleteFlag)
+        {
+            try
+            {
+                Grammar grammar = DBContext.Grammars.SingleOrDefault(g => g.Id == id && g.DeleteFlag == deleteFlag);
+                return grammar;
+            }
+            catch (Exception exception)
+            {
+                return null;
+            }
+        }
+
         public List<Grammar> GetAll(string search, int? sortColumn, string sortOrder, int skip, int take
             , DeleteFlag deleteFlag, out int total, out int filtered)
         {
@@ -19,7 +32,7 @@ namespace StandardWebsite.DAL
 
                 if (!string.IsNullOrEmpty(search))
                 {
-                    grammars = grammars.Where(g => g.Content.Contains(search));
+                    grammars = grammars.Where(g => g.Content.Contains(search) || g.GrammarTags.Any(gm => gm.Tag.Content.Contains(search)));
                 }
 
                 filtered = grammars.Count();
@@ -35,6 +48,26 @@ namespace StandardWebsite.DAL
                 }
 
                 return grammars.Skip(skip).Take(take).ToList();
+            }
+            catch (Exception exception)
+            {
+                return null;
+            }
+        }
+
+        public Grammar Create(Grammar grammar)
+        {
+            try
+            {
+                if (grammar != null)
+                {
+                    DBContext.Grammars.Add(grammar);
+                    DBContext.SaveChanges();
+
+                    return GetById(grammar.Id, grammar.DeleteFlag);
+                }
+
+                return grammar;
             }
             catch (Exception exception)
             {

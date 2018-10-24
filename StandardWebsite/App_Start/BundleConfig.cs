@@ -31,7 +31,6 @@ namespace StandardWebsite
                 , "~/Content/FlatPoint/css/bootstrap.css"
                 , "~/Content/FlatPoint/css/stylesheet.css"
                 , "~/Content/FlatPoint/icon/font-awesome.css"
-                , "~/Content/Custom.css"
             ));
 
             bundles.Add(new ScriptBundle("~/Content/FlatPointJS").Include(
@@ -77,6 +76,8 @@ namespace StandardWebsite
                 , "~/Content/FlatPoint/js/library/jquery.dataTables.js"
                 , "~/Content/FlatPoint/js/flatpoint_core.js"
                 , "~/Content/FlatPoint/js/datatables.js"
+
+                , "~/Content/FlatPoint/js/forms.js"
             ));
         }
     }

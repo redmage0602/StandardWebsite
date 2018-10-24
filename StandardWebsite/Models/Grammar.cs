@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StandardWebsite.Models
 {
@@ -11,5 +13,7 @@ namespace StandardWebsite.Models
         public int CreatedUser { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public int? UpdatedUser { get; set; }
+        [Display(Name = "Tags")]
+        public virtual List<GrammarTag> GrammarTags { get; set; }
     }
 }

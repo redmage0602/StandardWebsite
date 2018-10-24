@@ -9,6 +9,7 @@ namespace StandardWebsite.Controllers
     public class GrammarController : Controller
     {
         private GrammarBLL _grammarBLL = new GrammarBLL();
+        private TagBLL _tagBLL = new TagBLL();
 
         //
         // GET: /Grammar/Index
@@ -25,6 +26,36 @@ namespace StandardWebsite.Controllers
                 , request.iDisplayStart, request.iDisplayLength, request.sEcho);
 
             return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        //
+        // GET: /Grammar/Create
+        public ActionResult Create()
+        {
+            ViewBag.Tags = _tagBLL.GetAll();
+            return View();
+        }
+
+        //
+        // POST: /Grammar/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(GrammarViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Grammar grammar =  _grammarBLL.Create(viewModel.Content, viewModel.Tags);
+
+                if (grammar != null)
+                {
+                    return RedirectToAction("index");
+                }
+
+                ViewBag.ErrorMessage = "Create grammar failed. Please try again!";
+            }
+
+            ViewBag.Tags = _tagBLL.GetAll();
+            return View(viewModel);
         }
     }
 }

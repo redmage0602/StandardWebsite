@@ -176,8 +176,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GrammarViewModel.cs" />
     <Compile Include="Models\JQueryDataTable.cs" />
     <Compile Include="Models\Grammar.cs" />
+    <Compile Include="Models\GrammarTag.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -200,6 +202,7 @@
     <Content Include="Content\FlatPoint\css\library\bootstrap-timepicker.min.css" />
     <Content Include="Content\FlatPoint\css\library\bootstrap-wysihtml5.css" />
     <Content Include="Content\FlatPoint\css\library\bootstrapSwitch.css" />
+    <Content Include="Content\FlatPoint\css\library\chosen-sprite%402x.png" />
     <Content Include="Content\FlatPoint\css\library\chosen.css" />
     <Content Include="Content\FlatPoint\css\library\datepicker.css" />
     <Content Include="Content\FlatPoint\css\library\datetimepicker.css" />
@@ -402,7 +405,6 @@
     <Content Include="Content\FlatPoint\server\gae-python\static\favicon.ico" />
     <Content Include="Content\FlatPoint\server\gae-python\static\robots.txt" />
     <Content Include="Content\FlatPoint\server\node\server.js" />
-    <Content Include="Content\Custom.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -480,6 +482,7 @@
     <Content Include="Views\Account\Signin.cshtml" />
     <Content Include="Views\Grammar\Index.cshtml" />
     <Content Include="Views\Tag\Index.cshtml" />
+    <Content Include="Views\Grammar\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

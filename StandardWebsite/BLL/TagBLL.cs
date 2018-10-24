@@ -9,6 +9,11 @@ namespace StandardWebsite.BLL
     {
         private TagDAL _tagDAL = new TagDAL();
 
+        public List<Tag> GetAll()
+        {
+            return _tagDAL.GetAll(DeleteFlag.Active);
+        }
+
         public JQueryDataTableResponse GetAll(string search, int? sortColumn, string sortOrder, int skip, int take, string sEcho)
         {
             int total, filtered;
@@ -24,6 +29,7 @@ namespace StandardWebsite.BLL
                        {
                            index.ToString(),
                            t.Content,
+                           t.GrammarTags.Count.ToString(),
                            t.Id.ToString(),
                            t.Id.ToString(),
                            t.Id.ToString()
