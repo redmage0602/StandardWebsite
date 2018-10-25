@@ -103,6 +103,12 @@
 
         @Scripts.Render("~/Content/FlatPointJS")
 
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $('.textarea').wysihtml5();
+            });
+        </script>
+
         @RenderSection("CustomScript", required: false)
     </body>
 </html>

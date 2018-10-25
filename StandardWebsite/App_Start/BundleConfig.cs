@@ -77,6 +77,9 @@ namespace StandardWebsite
                 , "~/Content/FlatPoint/js/flatpoint_core.js"
                 , "~/Content/FlatPoint/js/datatables.js"
 
+                , "~/Content/FlatPoint/js/library/editor/wysihtml5-0.3.0.js"
+                , "~/Content/FlatPoint/js/library/editor/bootstrap-wysihtml5.js"
+                
                 , "~/Content/FlatPoint/js/forms.js"
             ));
         }

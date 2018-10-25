@@ -1,7 +1,9 @@
 ﻿using StandardWebsite.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using Z.EntityFramework.Plus;
 
 namespace StandardWebsite.DAL
 {
@@ -62,6 +64,27 @@ namespace StandardWebsite.DAL
                 if (grammar != null)
                 {
                     DBContext.Grammars.Add(grammar);
+                    DBContext.SaveChanges();
+
+                    return GetById(grammar.Id, grammar.DeleteFlag);
+                }
+
+                return grammar;
+            }
+            catch (Exception exception)
+            {
+                return null;
+            }
+        }
+
+        public Grammar Update(Grammar grammar)
+        {
+            try
+            {
+                if (grammar != null)
+                {
+                    DBContext.GrammarTags.Where(gm => gm.GrammarId == grammar.Id).Delete();
+                    DBContext.Entry(grammar).State = EntityState.Modified;
                     DBContext.SaveChanges();
 
                     return GetById(grammar.Id, grammar.DeleteFlag);

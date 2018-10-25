@@ -3,7 +3,7 @@
 @model GrammarViewModel
 
 @{
-    ViewBag.Title = "Create Grammar";
+    ViewBag.Title = "Update Grammar";
 }
 
 <div id="content">
@@ -23,17 +23,18 @@
                         </div>
 
                         <div class="well-content no-search">
-                            @if (ViewBag.ErrorMessage != null)
+                            @if (TempData["Message"] != null)
                             {
-                                <div class="alert alert-error">
+                                <div class="alert alert-@TempData["MessageType"]">
                                     <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
-                                    @ViewBag.ErrorMessage
+                                    @TempData["Message"]
                                 </div>
                             }
 
                             @using (Html.BeginForm())
                             {
                                 @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.Id)
 
                                 <div class="form_row">
                                     <label class="field_name align_right">
@@ -75,7 +76,7 @@
 
                                 <div class="form_row">
                                     <div class="field">
-                                        <input type="submit" value="Create" class="blue btn" />
+                                        <input type="submit" value="Update" class="blue btn" />
                                         <a href="@Url.Action("index", "grammar")" class="btn grey">Cancel</a>
                                     </div>
                                 </div>
